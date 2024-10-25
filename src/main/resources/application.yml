@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: candidate-evaluation-project
+
+  datasource:
+    url: jdbc:mysql://db:3306/app_database?useSSL=false&allowPublicKeyRetrieval=true
+    username: user
+    password: user
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+  cloud:
+    aws:
+      credentials:
+        access-key: ${AWS_ACCESS_KEY}
+        secret-key: ${AWS_SECRET_KEY}
+      region:
+        static: us-east-1
+
+api:
+  candidate:
+    evaluation:
+      project:
+        base:
+          path: /api
+          version: v1
