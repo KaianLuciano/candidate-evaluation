@@ -1,5 +1,6 @@
 package com.uol.candidate_evaluation_project.main.bean;
 
+import com.uol.candidate_evaluation_project.infrastructure.messaging.SqsMessagingService;
 import io.awspring.cloud.sqs.operations.SqsTemplate;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -37,4 +38,8 @@ public class AwsConfig {
         return SqsTemplate.builder().sqsAsyncClient(sqsAsyncClient).build();
     }
 
+    @Bean
+    public SqsMessagingService sqsMessagingService(SqsTemplate sqsTemplate) {
+        return new SqsMessagingService(sqsTemplate);
+    }
 }

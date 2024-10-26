@@ -12,14 +12,11 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
   cloud:
     aws:
       credentials:
-        access-key: ${AWS_ACCESS_KEY}
-        secret-key: ${AWS_SECRET_KEY}
+        access-key: AKIA47CRUN4Q7ZY6BTWV
+        secret-key: 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
       region:
         static: us-east-1
 

@@ -69,9 +69,19 @@ export AWS_ACCESS_KEY=TOKEN
 export AWS_SECRET_KEY=TOKEN
 ```
 
+Ou pode colocar o token diretamento na configuração do application.yml.
+
 ### Docker
 
 1. Construa e inicie os containers Docker (incluindo a aplicação):
     ```sh
     docker-compose up --build
     ```
+
+### Swagger
+
+Para fazer requisições para a aplicação basta acessar a documentação no link a seguir:
+
+```sh
+    http://localhost:8080/swagger-ui/index.html
+   ```
