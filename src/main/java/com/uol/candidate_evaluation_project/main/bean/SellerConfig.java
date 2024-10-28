@@ -25,7 +25,8 @@ public class SellerConfig {
 
     @Bean
     SellerGateway sellerGateway(SellerRepository sellerRepository, SellerEntityMapper sellerEntityMapper) {
-        return new SellerRepositoryGateway(sellerRepository, sellerEntityMapper);
+        return new SellerRepositoryGateway(sellerRepository, sellerEntityMapper
+        );
     }
 
     @Bean

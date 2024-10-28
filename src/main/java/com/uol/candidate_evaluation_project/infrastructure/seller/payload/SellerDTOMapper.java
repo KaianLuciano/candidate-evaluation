@@ -11,7 +11,7 @@ public class SellerDTOMapper {
     }
 
     public CreateSellerResponse toCreateResponse(Seller seller) {
-        return new CreateSellerResponse(seller.code());
+        return new CreateSellerResponse(seller.code(), seller.payments());
     }
 
     public UpdateSellerResponse toUpdateResponse(Seller seller) {

@@ -47,7 +47,7 @@ public class SellerRepositoryGateway implements SellerGateway {
     }
 
     private Seller save(final SellerEntity sellerEntity) {
-        SellerEntity payment = this.sellerRepository.save(sellerEntity);
-        return sellerEntityMapper.toDomainObj(payment);
+        SellerEntity seller = this.sellerRepository.save(sellerEntity);
+        return sellerEntityMapper.toDomainObj(seller);
     }
 }
