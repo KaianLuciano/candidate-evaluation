@@ -21,12 +21,12 @@ public class PaymentSqsListener {
         processPayment(message);
     }
 
-    @SqsListener("full-queue-payment")
+    @SqsListener("full-payments-payload")
     public void receiveFullPayment(String message) {
         processPayment(message);
     }
 
-    @SqsListener("excess-queue-payment")
+    @SqsListener("excess-payments-payload")
     public void receiveExcessPayment(String message) {
         processPayment(message);
     }

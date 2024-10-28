@@ -10,11 +10,11 @@ public class SellerEntityMapper {
         this.paymentEntityMapper = paymentEntityMapper;
     }
 
-    SellerEntity toEntity(Seller sellerDomainObj) {
+    public SellerEntity toEntity(Seller sellerDomainObj) {
         return new SellerEntity(sellerDomainObj.code());
     }
 
-    Seller toDomainObj(SellerEntity sellerEntity) {
+    public Seller toDomainObj(SellerEntity sellerEntity) {
         return new Seller(sellerEntity.getCode(), sellerEntity.getPayments().stream()
                 .map(paymentEntityMapper::toDomainObj).toList());
     }

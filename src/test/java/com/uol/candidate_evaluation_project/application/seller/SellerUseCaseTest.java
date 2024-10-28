@@ -4,6 +4,8 @@ import com.uol.candidate_evaluation_project.application.payment.PaymentGateway;
 import com.uol.candidate_evaluation_project.domain.payment.Payment;
 import com.uol.candidate_evaluation_project.domain.payment.PaymentStatus;
 import com.uol.candidate_evaluation_project.domain.seller.Seller;
+import com.uol.candidate_evaluation_project.infrastructure.seller.SellerEntity;
+import com.uol.candidate_evaluation_project.infrastructure.seller.SellerEntityMapper;
 import com.uol.candidate_evaluation_project.main.config.event.payment.PaymentValidationEvent;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -16,6 +18,7 @@ import org.springframework.context.ApplicationEventPublisher;
 
 import java.math.BigDecimal;
 import java.util.Collections;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
@@ -36,6 +39,8 @@ class SellerUseCaseTest {
     @InjectMocks
     private SellerUseCase sellerUseCase;
 
+    private SellerEntityMapper sellerEntityMapper;
+
     private Seller seller;
 
     @BeforeEach
@@ -47,11 +52,12 @@ class SellerUseCaseTest {
     @Test
     @DisplayName("Test create Seller")
     void testCreateSeller() {
-        when(sellerGateway.create(any(Seller.class))).thenReturn(seller);
+        when(sellerGateway.create(any(SellerEntity.class), any())).thenReturn(seller);
 
-        Seller createdSeller = sellerUseCase.create(seller);
+        Seller createdSeller = sellerUseCase.create(seller, List.of("Stringf"));
 
-        verify(sellerGateway, times(1)).create(seller);
+        verify(sellerGateway, times(1)).create(sellerEntityMapper.toEntity(seller),
+                List.of());
         assertSame(createdSeller, seller);
     }
 

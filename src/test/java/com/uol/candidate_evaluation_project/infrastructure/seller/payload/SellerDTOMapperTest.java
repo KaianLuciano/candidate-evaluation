@@ -57,7 +57,7 @@ class SellerDTOMapperTest {
 
     @Test
     void shouldMapToSellerFromCreateRequest() {
-        CreateSellerRequest request = new CreateSellerRequest("SELLER123");
+        CreateSellerRequest request = new CreateSellerRequest("SELLER123", List.of());
 
         Seller seller = sellerDTOMapper.toSeller(request);
 

@@ -3,7 +3,7 @@ spring:
     name: candidate-evaluation-project
 
   datasource:
-    url: jdbc:mysql://db:3306/app_database?useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://${DB_HOST:localhost}:3306/app_database?useSSL=false&allowPublicKeyRetrieval=true
     username: user
     password: user
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -12,6 +12,9 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
   cloud:
     aws:
       credentials:

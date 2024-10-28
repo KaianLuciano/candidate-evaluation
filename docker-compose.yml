@@ -24,5 +24,7 @@ services:
     restart: always
     networks:
       - candidate_evaluation_network
+    environment:
+      - DB_HOST=db
 networks:
   candidate_evaluation_network:

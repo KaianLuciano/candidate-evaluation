@@ -61,7 +61,7 @@ class SellerControllerTest {
         CreateSellerResponse createSellerResponse = new CreateSellerResponse("code123");
 
         when(sellerEntityMapper.toSeller(any(CreateSellerRequest.class))).thenReturn(seller);
-        when(sellerUseCase.create(seller)).thenReturn(seller);
+        when(sellerUseCase.create(seller, List.of())).thenReturn(seller);
         when(sellerEntityMapper.toCreateResponse(seller)).thenReturn(createSellerResponse);
 
         MockHttpServletRequestBuilder content = post("/api/v1/sellers")

@@ -4,25 +4,35 @@ import com.uol.candidate_evaluation_project.application.payment.PaymentGateway;
 import com.uol.candidate_evaluation_project.domain.payment.Payment;
 import com.uol.candidate_evaluation_project.domain.payment.PaymentStatus;
 import com.uol.candidate_evaluation_project.domain.seller.Seller;
+import com.uol.candidate_evaluation_project.infrastructure.payment.PaymentEntityMapper;
+import com.uol.candidate_evaluation_project.infrastructure.seller.SellerEntityMapper;
 import com.uol.candidate_evaluation_project.main.config.event.payment.PaymentValidationEvent;
 import org.springframework.context.ApplicationEventPublisher;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class SellerUseCase {
     private final SellerGateway sellerGateway;
     private final PaymentGateway paymentGateway;
+    private final PaymentEntityMapper paymentEntityMapper;
     private final ApplicationEventPublisher eventPublisher;
+    private final SellerEntityMapper sellerEntityMapper;
 
     public SellerUseCase(SellerGateway sellerGateway, PaymentGateway paymentGateway,
-                         ApplicationEventPublisher eventPublisher) {
+                         ApplicationEventPublisher eventPublisher, PaymentEntityMapper paymentEntityMapper,
+                         SellerEntityMapper sellerEntityMapper) {
         this.sellerGateway = sellerGateway;
         this.paymentGateway = paymentGateway;
         this.eventPublisher = eventPublisher;
+        this.paymentEntityMapper = paymentEntityMapper;
+        this.sellerEntityMapper = sellerEntityMapper;
     }
 
-    public Seller create(Seller seller) {
-        return sellerGateway.create(seller);
+    public Seller create(Seller seller, List<String> paymentsCodes) {
+        List<Payment> payments = paymentsCodes.stream().map(paymentGateway::findById).toList();
+        return sellerGateway.create(sellerEntityMapper.toEntity(seller), payments.stream().
+                map(paymentEntityMapper::toEntity).toList());
     }
 
     public Seller findById(String sellerCode) {

@@ -21,7 +21,8 @@ public class SellerController {
 
     @PostMapping
     public ResponseEntity<CreateSellerResponse> create(@RequestBody CreateSellerRequest createSellerRequest) {
-        Seller seller = sellerUseCase.create(sellerEntityMapper.toSeller(createSellerRequest));
+        Seller seller = sellerUseCase.create(sellerEntityMapper.toSeller(createSellerRequest),
+                createSellerRequest.paymentsCodes());
         return ResponseEntity.ok().body(sellerEntityMapper.toCreateResponse(seller));
     }
 

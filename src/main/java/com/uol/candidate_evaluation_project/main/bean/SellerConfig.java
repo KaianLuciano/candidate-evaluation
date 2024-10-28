@@ -17,8 +17,10 @@ import org.springframework.context.annotation.Configuration;
 public class SellerConfig {
     @Bean
     SellerUseCase createSellerUseCase(SellerGateway sellerGateway, PaymentGateway paymentGateway,
-                                      ApplicationEventPublisher applicationEventPublisher) {
-        return new SellerUseCase(sellerGateway, paymentGateway, applicationEventPublisher);
+                                      ApplicationEventPublisher applicationEventPublisher,
+                                      PaymentEntityMapper paymentEntityMapper, SellerEntityMapper sellerEntityMapper) {
+        return new SellerUseCase(sellerGateway, paymentGateway, applicationEventPublisher, paymentEntityMapper,
+                sellerEntityMapper);
     }
 
     @Bean

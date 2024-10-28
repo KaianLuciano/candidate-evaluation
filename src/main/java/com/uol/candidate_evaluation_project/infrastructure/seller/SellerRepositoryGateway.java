@@ -2,7 +2,10 @@ package com.uol.candidate_evaluation_project.infrastructure.seller;
 
 import com.uol.candidate_evaluation_project.application.seller.SellerGateway;
 import com.uol.candidate_evaluation_project.domain.seller.Seller;
+import com.uol.candidate_evaluation_project.infrastructure.payment.PaymentEntity;
 import com.uol.candidate_evaluation_project.main.error.Errors;
+
+import java.util.List;
 
 public class SellerRepositoryGateway implements SellerGateway {
     private final SellerRepository sellerRepository;
@@ -14,8 +17,9 @@ public class SellerRepositoryGateway implements SellerGateway {
     }
 
     @Override
-    public Seller create(Seller seller) {
-        return save(sellerEntityMapper.toEntity(seller));
+    public Seller create(SellerEntity sellerEntity, List<PaymentEntity> payments) {
+        sellerEntity.getPayments().addAll(payments);
+        return save(sellerEntity);
     }
 
     @Override

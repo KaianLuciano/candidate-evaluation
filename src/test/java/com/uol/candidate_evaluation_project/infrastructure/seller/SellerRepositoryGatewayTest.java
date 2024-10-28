@@ -5,6 +5,7 @@ import com.uol.candidate_evaluation_project.main.error.Errors;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -32,7 +33,7 @@ class SellerRepositoryGatewayTest {
         when(sellerRepository.save(sellerEntity)).thenReturn(sellerEntity);
         when(sellerEntityMapper.toDomainObj(sellerEntity)).thenReturn(seller);
 
-        Seller createdSeller = sellerRepositoryGateway.create(seller);
+        Seller createdSeller = sellerRepositoryGateway.create(sellerEntityMapper.toEntity(seller), List.of());
 
         assertEquals(seller, createdSeller);
         verify(sellerEntityMapper).toEntity(seller);
