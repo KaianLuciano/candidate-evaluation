@@ -10,7 +10,10 @@ import java.util.Objects;
 @Entity
 public class SellerEntity {
 
-    @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
     private final List<PaymentEntity> payments = new ArrayList<>();
     @Id
     @Column(unique = true, nullable = false)

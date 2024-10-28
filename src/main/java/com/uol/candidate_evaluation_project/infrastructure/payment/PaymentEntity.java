@@ -3,7 +3,6 @@ package com.uol.candidate_evaluation_project.infrastructure.payment;
 
 import com.uol.candidate_evaluation_project.domain.payment.Payment;
 import com.uol.candidate_evaluation_project.domain.payment.PaymentStatus;
-import com.uol.candidate_evaluation_project.infrastructure.seller.SellerEntity;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -17,11 +16,6 @@ public class PaymentEntity {
     private BigDecimal value;
     @Enumerated(EnumType.STRING)
     private PaymentStatus status;
-
-    @ManyToOne
-    @JoinColumn(name = "seller_id")
-    private SellerEntity seller;
-
 
     public PaymentEntity() {
     }
@@ -56,14 +50,6 @@ public class PaymentEntity {
         this.status = status;
     }
 
-    public SellerEntity getSeller() {
-        return seller;
-    }
-
-    public void setSeller(SellerEntity seller) {
-        this.seller = seller;
-    }
-
     public void update(Payment payment) {
         this.billingCode = payment.billingCode();
         this.value = payment.value();
@@ -75,11 +61,11 @@ public class PaymentEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PaymentEntity that = (PaymentEntity) o;
-        return Objects.equals(billingCode, that.billingCode) && Objects.equals(value, that.value) && status == that.status && Objects.equals(seller, that.seller);
+        return Objects.equals(billingCode, that.billingCode) && Objects.equals(value, that.value) && status == that.status;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(billingCode, value, status, seller);
+        return Objects.hash(billingCode, value, status);
     }
 }
