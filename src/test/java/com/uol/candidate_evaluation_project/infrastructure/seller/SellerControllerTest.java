@@ -58,7 +58,7 @@ class SellerControllerTest {
     void testCreateSeller() throws Exception {
         Seller seller = new Seller("code123", List.of(new Payment("teste1", BigDecimal.valueOf(4.4),
                 PaymentStatus.EXCESS)));
-        CreateSellerResponse createSellerResponse = new CreateSellerResponse("code123");
+        CreateSellerResponse createSellerResponse = new CreateSellerResponse("code123", List.of());
 
         when(sellerEntityMapper.toSeller(any(CreateSellerRequest.class))).thenReturn(seller);
         when(sellerUseCase.create(seller, List.of())).thenReturn(seller);

@@ -75,7 +75,7 @@ Ou pode colocar o token diretamento na configuração do application.yml.
 
 1. Construa e inicie os containers Docker (incluindo a aplicação):
     ```sh
-    docker-compose up --build
+    docker compose up 
     ```
 
 ### Swagger

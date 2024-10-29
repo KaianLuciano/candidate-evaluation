@@ -23,12 +23,10 @@ class PaymentEntityTest {
         paymentEntity.setBillingCode(billingCode);
         paymentEntity.setValue(value);
         paymentEntity.setStatus(status);
-        paymentEntity.setSeller(seller);
 
         assertEquals(billingCode, paymentEntity.getBillingCode());
         assertEquals(value, paymentEntity.getValue());
         assertEquals(status, paymentEntity.getStatus());
-        assertEquals(seller, paymentEntity.getSeller());
     }
 
     @Test
